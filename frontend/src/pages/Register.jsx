@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
@@ -10,13 +10,8 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [loading, setLoading] = useState(false);
-    const [isVisible, setIsVisible] = useState(false);
     const { register } = useAuth();
     const navigate = useNavigate();
-
-    useEffect(() => {
-        setIsVisible(true);
-    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -47,22 +42,22 @@ const Register = () => {
     return (
         <div className="page-container flex items-center justify-center min-h-screen py-12">
             <div className="absolute inset-0 bg-grid opacity-20"></div>
-            <div className="absolute top-1/3 right-1/3 w-96 h-96 bg-cyber-purple/10 rounded-full blur-3xl animate-float"></div>
+            <div className="absolute top-1/3 right-1/3 w-96 h-96 bg-cyber-purple/10 rounded-full blur-3xl"></div>
 
             <div className="relative w-full max-w-md px-4">
-                <div className={`glass-card p-8 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+                <div className="glass-card p-8">
                     {/* Header */}
-                    <div className={`text-center mb-8 ${isVisible ? 'animate-scale-in delay-100' : 'opacity-0'}`}>
+                    <div className="text-center mb-8">
                         <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-cyber-purple to-cyber-blue mb-4">
-                            <HiShieldCheck className="w-8 h-8 text-white animate-glow" />
+                            <HiShieldCheck className="w-8 h-8 text-white" />
                         </div>
                         <h1 className="text-2xl font-bold text-cyber-text">Create Account</h1>
                         <p className="text-sm text-cyber-muted mt-2">Join CyberShield and start protecting</p>
                     </div>
 
                     {/* Form */}
-                    <form onSubmit={handleSubmit} className={`space-y-5 ${isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0'}`}>
-                        <div className={isVisible ? 'animate-fade-in-left delay-300' : 'opacity-0'}>
+                    <form onSubmit={handleSubmit} className="space-y-5">
+                        <div>
                             <label htmlFor="name" className="cyber-label">Full Name</label>
                             <div className="relative">
                                 <HiUser className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-cyber-muted" />
@@ -78,7 +73,7 @@ const Register = () => {
                             </div>
                         </div>
 
-                        <div className={isVisible ? 'animate-fade-in-left delay-400' : 'opacity-0'}>
+                        <div>
                             <label htmlFor="email" className="cyber-label">Email Address</label>
                             <div className="relative">
                                 <HiMail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-cyber-muted" />
@@ -94,7 +89,7 @@ const Register = () => {
                             </div>
                         </div>
 
-                        <div className={isVisible ? 'animate-fade-in-left delay-500' : 'opacity-0'}>
+                        <div>
                             <label htmlFor="password" className="cyber-label">Password</label>
                             <div className="relative">
                                 <HiLockClosed className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-cyber-muted" />
@@ -111,7 +106,7 @@ const Register = () => {
                             </div>
                         </div>
 
-                        <div className={isVisible ? 'animate-fade-in-left delay-600' : 'opacity-0'}>
+                        <div>
                             <label htmlFor="confirmPassword" className="cyber-label">Confirm Password</label>
                             <div className="relative">
                                 <HiLockClosed className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-cyber-muted" />
@@ -130,7 +125,7 @@ const Register = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className={`w-full cyber-button-primary disabled:opacity-50 disabled:cursor-not-allowed hover-lift ${isVisible ? 'animate-fade-in-up delay-700' : 'opacity-0'}`}
+                            className="w-full cyber-button-primary disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {loading ? (
                                 <span className="flex items-center justify-center gap-2">
@@ -142,12 +137,12 @@ const Register = () => {
                     </form>
 
                     {/* Footer */}
-                    <div className={`text-center text-sm text-cyber-muted mt-6 ${isVisible ? 'animate-fade-in-up delay-800' : 'opacity-0'}`}>
+                    <p className="text-center text-sm text-cyber-muted mt-6">
                         Already have an account?{' '}
                         <Link to="/login" className="text-cyber-cyan hover:text-cyber-green transition-colors font-medium">
                             Sign in
                         </Link>
-                    </div>
+                    </p>
                 </div>
             </div>
         </div>
