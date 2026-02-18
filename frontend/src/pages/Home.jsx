@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { HiShieldCheck, HiKey, HiFingerPrint, HiGlobeAlt, HiExclamation, HiChevronRight, HiLightningBolt } from 'react-icons/hi';
+import { useEffect, useState } from 'react';
 
 const tools = [
     {
@@ -29,7 +30,7 @@ const tools = [
     },
     {
         title: 'CVE Lookup',
-        description: 'Search the vulnerability database for known CVEs by keyword or ID.',
+        description: 'Search vulnerability database for known CVEs by keyword or ID.',
         icon: HiExclamation,
         to: '/tools/cve-lookup',
         gradient: 'from-orange-500 to-cyber-red',
@@ -39,6 +40,11 @@ const tools = [
 
 const Home = () => {
     const { isAuthenticated } = useAuth();
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        setIsVisible(true);
+    }, []);
 
     return (
         <div className="page-container">
@@ -47,30 +53,30 @@ const Home = () => {
                 {/* Background effects */}
                 <div className="absolute inset-0 bg-grid opacity-30"></div>
                 <div className="absolute inset-0 bg-hero-gradient"></div>
-                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyber-blue/10 rounded-full blur-3xl"></div>
-                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyber-cyan/10 rounded-full blur-3xl"></div>
+                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyber-blue/10 rounded-full blur-3xl animate-float"></div>
+                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyber-cyan/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
 
                 <div className="relative section-container py-24 lg:py-32">
                     <div className="text-center max-w-4xl mx-auto">
                         {/* Badge */}
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyber-cyan/30 bg-cyber-cyan/5 mb-8 animate-fade-in-up">
+                        <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyber-cyan/30 bg-cyber-cyan/5 mb-8 ${isVisible ? 'animate-slide-in-top' : 'opacity-0'}`}>
                             <HiLightningBolt className="w-4 h-4 text-cyber-cyan animate-glow" />
                             <span className="text-xs font-medium text-cyber-cyan uppercase tracking-wider">Cybersecurity Awareness Platform</span>
                         </div>
 
                         {/* Heading */}
-                        <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black leading-tight mb-6 animate-fade-in-up delay-100">
+                        <h1 className={`text-4xl sm:text-5xl lg:text-7xl font-black leading-tight mb-6 ${isVisible ? 'animate-reveal' : 'opacity-0'}`}>
                             Defend Your{' '}
                             <span className="gradient-text">Digital World</span>
                         </h1>
 
-                        <p className="text-lg sm:text-xl text-cyber-muted max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up delay-200">
+                        <p className={`text-lg sm:text-xl text-cyber-muted max-w-2xl mx-auto mb-10 leading-relaxed ${isVisible ? 'animate-fade-in-up delay-200' : 'opacity-0'}`}>
                             Access powerful cybersecurity tools, real-time threat intelligence, and educational
                             resources to strengthen your digital defense and stay ahead of cyber threats.
                         </p>
 
                         {/* CTA Buttons */}
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up delay-300">
+                        <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 ${isVisible ? 'animate-fade-in-up delay-300' : 'opacity-0'}`}>
                             {!isAuthenticated ? (
                                 <Link to="/register" className="cyber-button-primary text-lg !px-8 !py-4 hover-lift">
                                     Get Started Free
@@ -86,14 +92,14 @@ const Home = () => {
                         </div>
 
                         {/* Stats */}
-                        <div className="flex flex-wrap items-center justify-center gap-8 mt-16 animate-fade-in-up delay-400">
+                        <div className="flex flex-wrap items-center justify-center gap-8 mt-16">
                             {[
                                 { label: 'Security Tools', value: '4+' },
                                 { label: 'Threat Feeds', value: 'Live' },
                                 { label: 'CVE Database', value: '12+' },
                                 { label: 'Free to Use', value: '100%' }
                             ].map(({ label, value }, index) => (
-                                <div key={label} className="text-center animate-scale-in" style={{ animationDelay: `${0.5 + index * 0.1}s` }}>
+                                <div key={label} className={`text-center ${isVisible ? 'animate-scale-in' : 'opacity-0'}`} style={{ animationDelay: `${0.5 + index * 0.15}s` }}>
                                     <p className="text-2xl sm:text-3xl font-bold text-cyber-cyan">{value}</p>
                                     <p className="text-xs text-cyber-muted mt-1 uppercase tracking-wider">{label}</p>
                                 </div>
@@ -106,10 +112,10 @@ const Home = () => {
             {/* Tools Section */}
             <section className="section-container">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl sm:text-4xl font-bold mb-4 animate-fade-in-up">
+                    <h2 className={`text-3xl sm:text-4xl font-bold mb-4 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
                         Powerful <span className="gradient-text">Security Tools</span>
                     </h2>
-                    <p className="text-cyber-muted max-w-2xl mx-auto animate-fade-in-up delay-100">
+                    <p className={`text-cyber-muted max-w-2xl mx-auto ${isVisible ? 'animate-fade-in-up delay-100' : 'opacity-0'}`}>
                         Everything you need to assess and improve your cybersecurity posture, all in one place.
                     </p>
                 </div>
@@ -119,11 +125,11 @@ const Home = () => {
                         <Link
                             key={to}
                             to={to}
-                            className={`glass-card p-6 group hover:${shadow} hover:border-cyber-cyan/30 transition-all duration-500 animate-fade-in-up hover-lift`}
-                            style={{ animationDelay: `${0.2 + index * 0.1}s` }}
+                            className={`glass-card p-6 group hover:${shadow} hover:border-cyber-cyan/30 transition-all duration-500 hover-lift ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                            style={{ animationDelay: `${0.8 + index * 0.1}s` }}
                         >
                             <div className="flex items-start gap-4">
-                                <div className={`flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300 animate-float`}>
+                                <div className={`flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300 ${isVisible ? 'animate-float' : ''}`} style={{ animationDelay: `${1.2 + index * 0.2}s` }}>
                                     <Icon className="w-6 h-6 text-white" />
                                 </div>
                                 <div className="flex-1">
@@ -141,19 +147,19 @@ const Home = () => {
 
             {/* Threat Feed Preview */}
             <section className="section-container">
-                <div className="glass-card p-8 sm:p-12 text-center animate-fade-in-up">
+                <div className={`glass-card p-8 sm:p-12 text-center ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '1.5s' }}>
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyber-red/10 border border-cyber-red/30 mb-6 animate-glow">
                         <span className="w-2 h-2 rounded-full bg-cyber-red animate-pulse"></span>
                         <span className="text-xs font-medium text-cyber-red uppercase tracking-wider">Live Threats</span>
                     </div>
-                    <h2 className="text-2xl sm:text-3xl font-bold mb-4 animate-fade-in-up delay-100">
+                    <h2 className="text-2xl sm:text-3xl font-bold mb-4">
                         Stay Informed with <span className="gradient-text">Threat Intelligence</span>
                     </h2>
-                    <p className="text-cyber-muted max-w-xl mx-auto mb-8 animate-fade-in-up delay-200">
+                    <p className="text-cyber-muted max-w-xl mx-auto mb-8">
                         Monitor latest cybersecurity threats and vulnerabilities. Our threat feed keeps you
                         updated with real-time intelligence to protect your assets.
                     </p>
-                    <Link to="/threat-feed" className="cyber-button-primary hover-lift animate-fade-in-up delay-300">
+                    <Link to="/threat-feed" className="cyber-button-primary hover-lift">
                         View Threat Feed
                     </Link>
                 </div>
@@ -162,19 +168,19 @@ const Home = () => {
             {/* CTA Section */}
             {!isAuthenticated && (
                 <section className="section-container pb-24">
-                    <div className="relative rounded-2xl overflow-hidden p-8 sm:p-16 animate-fade-in-up">
+                    <div className={`relative rounded-2xl overflow-hidden p-8 sm:p-16 ${isVisible ? 'animate-reveal' : 'opacity-0'}`} style={{ animationDelay: '1.8s' }}>
                         <div className="absolute inset-0 bg-gradient-to-r from-cyber-blue/20 to-cyber-purple/20"></div>
                         <div className="absolute inset-0 bg-cyber-card/50 backdrop-blur-sm"></div>
                         <div className="relative text-center">
-                            <HiShieldCheck className="w-16 h-16 text-cyber-cyan mx-auto mb-6 animate-float" />
-                            <h2 className="text-2xl sm:text-4xl font-bold mb-4 animate-fade-in-up delay-100">
+                            <HiShieldCheck className={`w-16 h-16 text-cyber-cyan mx-auto mb-6 ${isVisible ? 'animate-float' : ''}`} style={{ animationDelay: '2.2s' }} />
+                            <h2 className="text-2xl sm:text-4xl font-bold mb-4">
                                 Ready to Secure Your Digital Presence?
                             </h2>
-                            <p className="text-cyber-muted max-w-lg mx-auto mb-8 animate-fade-in-up delay-200">
+                            <p className="text-cyber-muted max-w-lg mx-auto mb-8">
                                 Join CyberShield today and get access to all tools, personalized dashboard,
                                 and scan history tracking.
                             </p>
-                            <Link to="/register" className="cyber-button-primary text-lg !px-8 !py-4 hover-lift animate-fade-in-up delay-300">
+                            <Link to="/register" className="cyber-button-primary text-lg !px-8 !py-4 hover-lift">
                                 Create Free Account
                             </Link>
                         </div>
