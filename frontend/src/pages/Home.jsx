@@ -53,47 +53,47 @@ const Home = () => {
                 <div className="relative section-container py-24 lg:py-32">
                     <div className="text-center max-w-4xl mx-auto">
                         {/* Badge */}
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyber-cyan/30 bg-cyber-cyan/5 mb-8">
-                            <HiLightningBolt className="w-4 h-4 text-cyber-cyan" />
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyber-cyan/30 bg-cyber-cyan/5 mb-8 animate-fade-in-up">
+                            <HiLightningBolt className="w-4 h-4 text-cyber-cyan animate-glow" />
                             <span className="text-xs font-medium text-cyber-cyan uppercase tracking-wider">Cybersecurity Awareness Platform</span>
                         </div>
 
                         {/* Heading */}
-                        <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black leading-tight mb-6">
+                        <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black leading-tight mb-6 animate-fade-in-up delay-100">
                             Defend Your{' '}
                             <span className="gradient-text">Digital World</span>
                         </h1>
 
-                        <p className="text-lg sm:text-xl text-cyber-muted max-w-2xl mx-auto mb-10 leading-relaxed">
+                        <p className="text-lg sm:text-xl text-cyber-muted max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up delay-200">
                             Access powerful cybersecurity tools, real-time threat intelligence, and educational
                             resources to strengthen your digital defense and stay ahead of cyber threats.
                         </p>
 
                         {/* CTA Buttons */}
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up delay-300">
                             {!isAuthenticated ? (
-                                <Link to="/register" className="cyber-button-primary text-lg !px-8 !py-4">
+                                <Link to="/register" className="cyber-button-primary text-lg !px-8 !py-4 hover-lift">
                                     Get Started Free
                                 </Link>
                             ) : (
-                                <Link to="/dashboard" className="cyber-button-primary text-lg !px-8 !py-4">
+                                <Link to="/dashboard" className="cyber-button-primary text-lg !px-8 !py-4 hover-lift">
                                     Go to Dashboard
                                 </Link>
                             )}
-                            <Link to="/tools" className="cyber-button-secondary text-lg !px-8 !py-4">
+                            <Link to="/tools" className="cyber-button-secondary text-lg !px-8 !py-4 hover-lift">
                                 Explore Tools
                             </Link>
                         </div>
 
                         {/* Stats */}
-                        <div className="flex flex-wrap items-center justify-center gap-8 mt-16">
+                        <div className="flex flex-wrap items-center justify-center gap-8 mt-16 animate-fade-in-up delay-400">
                             {[
                                 { label: 'Security Tools', value: '4+' },
                                 { label: 'Threat Feeds', value: 'Live' },
                                 { label: 'CVE Database', value: '12+' },
                                 { label: 'Free to Use', value: '100%' }
-                            ].map(({ label, value }) => (
-                                <div key={label} className="text-center">
+                            ].map(({ label, value }, index) => (
+                                <div key={label} className="text-center animate-scale-in" style={{ animationDelay: `${0.5 + index * 0.1}s` }}>
                                     <p className="text-2xl sm:text-3xl font-bold text-cyber-cyan">{value}</p>
                                     <p className="text-xs text-cyber-muted mt-1 uppercase tracking-wider">{label}</p>
                                 </div>
@@ -106,23 +106,24 @@ const Home = () => {
             {/* Tools Section */}
             <section className="section-container">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+                    <h2 className="text-3xl sm:text-4xl font-bold mb-4 animate-fade-in-up">
                         Powerful <span className="gradient-text">Security Tools</span>
                     </h2>
-                    <p className="text-cyber-muted max-w-2xl mx-auto">
+                    <p className="text-cyber-muted max-w-2xl mx-auto animate-fade-in-up delay-100">
                         Everything you need to assess and improve your cybersecurity posture, all in one place.
                     </p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-                    {tools.map(({ title, description, icon: Icon, to, gradient, shadow }) => (
+                    {tools.map(({ title, description, icon: Icon, to, gradient, shadow }, index) => (
                         <Link
                             key={to}
                             to={to}
-                            className={`glass-card p-6 group hover:${shadow} hover:border-cyber-cyan/30 transition-all duration-500`}
+                            className={`glass-card p-6 group hover:${shadow} hover:border-cyber-cyan/30 transition-all duration-500 animate-fade-in-up hover-lift`}
+                            style={{ animationDelay: `${0.2 + index * 0.1}s` }}
                         >
                             <div className="flex items-start gap-4">
-                                <div className={`flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                                <div className={`flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300 animate-float`}>
                                     <Icon className="w-6 h-6 text-white" />
                                 </div>
                                 <div className="flex-1">
@@ -140,19 +141,19 @@ const Home = () => {
 
             {/* Threat Feed Preview */}
             <section className="section-container">
-                <div className="glass-card p-8 sm:p-12 text-center">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyber-red/10 border border-cyber-red/30 mb-6">
+                <div className="glass-card p-8 sm:p-12 text-center animate-fade-in-up">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyber-red/10 border border-cyber-red/30 mb-6 animate-glow">
                         <span className="w-2 h-2 rounded-full bg-cyber-red animate-pulse"></span>
                         <span className="text-xs font-medium text-cyber-red uppercase tracking-wider">Live Threats</span>
                     </div>
-                    <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+                    <h2 className="text-2xl sm:text-3xl font-bold mb-4 animate-fade-in-up delay-100">
                         Stay Informed with <span className="gradient-text">Threat Intelligence</span>
                     </h2>
-                    <p className="text-cyber-muted max-w-xl mx-auto mb-8">
-                        Monitor the latest cybersecurity threats and vulnerabilities. Our threat feed keeps you
+                    <p className="text-cyber-muted max-w-xl mx-auto mb-8 animate-fade-in-up delay-200">
+                        Monitor latest cybersecurity threats and vulnerabilities. Our threat feed keeps you
                         updated with real-time intelligence to protect your assets.
                     </p>
-                    <Link to="/threat-feed" className="cyber-button-primary">
+                    <Link to="/threat-feed" className="cyber-button-primary hover-lift animate-fade-in-up delay-300">
                         View Threat Feed
                     </Link>
                 </div>
@@ -161,19 +162,19 @@ const Home = () => {
             {/* CTA Section */}
             {!isAuthenticated && (
                 <section className="section-container pb-24">
-                    <div className="relative rounded-2xl overflow-hidden p-8 sm:p-16">
+                    <div className="relative rounded-2xl overflow-hidden p-8 sm:p-16 animate-fade-in-up">
                         <div className="absolute inset-0 bg-gradient-to-r from-cyber-blue/20 to-cyber-purple/20"></div>
                         <div className="absolute inset-0 bg-cyber-card/50 backdrop-blur-sm"></div>
                         <div className="relative text-center">
-                            <HiShieldCheck className="w-16 h-16 text-cyber-cyan mx-auto mb-6" />
-                            <h2 className="text-2xl sm:text-4xl font-bold mb-4">
+                            <HiShieldCheck className="w-16 h-16 text-cyber-cyan mx-auto mb-6 animate-float" />
+                            <h2 className="text-2xl sm:text-4xl font-bold mb-4 animate-fade-in-up delay-100">
                                 Ready to Secure Your Digital Presence?
                             </h2>
-                            <p className="text-cyber-muted max-w-lg mx-auto mb-8">
+                            <p className="text-cyber-muted max-w-lg mx-auto mb-8 animate-fade-in-up delay-200">
                                 Join CyberShield today and get access to all tools, personalized dashboard,
                                 and scan history tracking.
                             </p>
-                            <Link to="/register" className="cyber-button-primary text-lg !px-8 !py-4">
+                            <Link to="/register" className="cyber-button-primary text-lg !px-8 !py-4 hover-lift animate-fade-in-up delay-300">
                                 Create Free Account
                             </Link>
                         </div>
