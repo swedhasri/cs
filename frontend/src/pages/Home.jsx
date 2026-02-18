@@ -53,7 +53,7 @@ const Home = () => {
                 <div className="relative section-container py-24 lg:py-32">
                     <div className="text-center max-w-4xl mx-auto">
                         {/* Badge */}
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyber-cyan/30 bg-cyber-cyan/5 mb-8 animate-reveal">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyber-cyan/30 bg-cyber-cyan/5 mb-8 animate-fade-in-up">
                             <HiLightningBolt className="w-4 h-4 text-cyber-cyan animate-glow" />
                             <span className="text-xs font-medium text-cyber-cyan uppercase tracking-wider">Cybersecurity Awareness Platform</span>
                         </div>
@@ -72,15 +72,15 @@ const Home = () => {
                         {/* CTA Buttons */}
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up delay-300">
                             {!isAuthenticated ? (
-                                <Link to="/register" className="cyber-button-primary text-lg !px-8 !py-4 hover-lift hover-glow">
+                                <Link to="/register" className="cyber-button-primary text-lg !px-8 !py-4 hover-lift">
                                     Get Started Free
                                 </Link>
                             ) : (
-                                <Link to="/dashboard" className="cyber-button-primary text-lg !px-8 !py-4 hover-lift hover-glow">
+                                <Link to="/dashboard" className="cyber-button-primary text-lg !px-8 !py-4 hover-lift">
                                     Go to Dashboard
                                 </Link>
                             )}
-                            <Link to="/tools" className="cyber-button-secondary text-lg !px-8 !py-4 hover-lift hover-border">
+                            <Link to="/tools" className="cyber-button-secondary text-lg !px-8 !py-4 hover-lift">
                                 Explore Tools
                             </Link>
                         </div>
@@ -93,7 +93,7 @@ const Home = () => {
                                 { label: 'CVE Database', value: '12+' },
                                 { label: 'Free to Use', value: '100%' }
                             ].map(({ label, value }, index) => (
-                                <div key={label} className="text-center animate-scale-in hover-scale" style={{ animationDelay: `${0.5 + index * 0.15}s` }}>
+                                <div key={label} className="text-center animate-scale-in" style={{ animationDelay: `${0.5 + index * 0.1}s` }}>
                                     <p className="text-2xl sm:text-3xl font-bold text-cyber-cyan">{value}</p>
                                     <p className="text-xs text-cyber-muted mt-1 uppercase tracking-wider">{label}</p>
                                 </div>
@@ -119,20 +119,20 @@ const Home = () => {
                         <Link
                             key={to}
                             to={to}
-                            className={`glass-card p-6 group hover:${shadow} hover:border-cyber-cyan/30 transition-all duration-700 animate-slide-in hover-lift hover-glow transition-all-smooth`}
-                            style={{ animationDelay: `${0.3 + index * 0.2}s` }}
+                            className={`glass-card p-6 group hover:${shadow} hover:border-cyber-cyan/30 transition-all duration-500 animate-fade-in-up hover-lift`}
+                            style={{ animationDelay: `${0.2 + index * 0.1}s` }}
                         >
                             <div className="flex items-start gap-4">
-                                <div className={`flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center group-hover:scale-110 transition-all duration-500 animate-float`}>
+                                <div className={`flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300 animate-float`}>
                                     <Icon className="w-6 h-6 text-white" />
                                 </div>
                                 <div className="flex-1">
-                                    <h3 className="text-lg font-semibold text-cyber-text group-hover:text-cyber-cyan transition-colors duration-500 mb-2">
+                                    <h3 className="text-lg font-semibold text-cyber-text group-hover:text-cyber-cyan transition-colors duration-300 mb-2">
                                         {title}
                                     </h3>
                                     <p className="text-sm text-cyber-muted leading-relaxed">{description}</p>
                                 </div>
-                                <HiChevronRight className="w-5 h-5 text-cyber-muted group-hover:text-cyber-cyan group-hover:translate-x-2 transition-all duration-500" />
+                                <HiChevronRight className="w-5 h-5 text-cyber-muted group-hover:text-cyber-cyan group-hover:translate-x-1 transition-all duration-300" />
                             </div>
                         </Link>
                     ))}
@@ -141,8 +141,8 @@ const Home = () => {
 
             {/* Threat Feed Preview */}
             <section className="section-container">
-                <div className="glass-card p-8 sm:p-12 text-center animate-reveal">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyber-red/10 border border-cyber-red/30 mb-6 animate-glow hover-glow">
+                <div className="glass-card p-8 sm:p-12 text-center animate-fade-in-up">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyber-red/10 border border-cyber-red/30 mb-6 animate-glow">
                         <span className="w-2 h-2 rounded-full bg-cyber-red animate-pulse"></span>
                         <span className="text-xs font-medium text-cyber-red uppercase tracking-wider">Live Threats</span>
                     </div>
@@ -153,7 +153,7 @@ const Home = () => {
                         Monitor latest cybersecurity threats and vulnerabilities. Our threat feed keeps you
                         updated with real-time intelligence to protect your assets.
                     </p>
-                    <Link to="/threat-feed" className="cyber-button-primary hover-lift hover-glow animate-fade-in-up delay-300 transition-all-smooth">
+                    <Link to="/threat-feed" className="cyber-button-primary hover-lift animate-fade-in-up delay-300">
                         View Threat Feed
                     </Link>
                 </div>
@@ -162,11 +162,11 @@ const Home = () => {
             {/* CTA Section */}
             {!isAuthenticated && (
                 <section className="section-container pb-24">
-                    <div className="relative rounded-2xl overflow-hidden p-8 sm:p-16 animate-slide-in">
-                        <div className="absolute inset-0 bg-gradient-to-r from-cyber-blue/20 to-cyber-purple/20 animate-parallax"></div>
+                    <div className="relative rounded-2xl overflow-hidden p-8 sm:p-16 animate-fade-in-up">
+                        <div className="absolute inset-0 bg-gradient-to-r from-cyber-blue/20 to-cyber-purple/20"></div>
                         <div className="absolute inset-0 bg-cyber-card/50 backdrop-blur-sm"></div>
                         <div className="relative text-center">
-                            <HiShieldCheck className="w-16 h-16 text-cyber-cyan mx-auto mb-6 animate-float hover-scale" />
+                            <HiShieldCheck className="w-16 h-16 text-cyber-cyan mx-auto mb-6 animate-float" />
                             <h2 className="text-2xl sm:text-4xl font-bold mb-4 animate-fade-in-up delay-100">
                                 Ready to Secure Your Digital Presence?
                             </h2>
@@ -174,7 +174,7 @@ const Home = () => {
                                 Join CyberShield today and get access to all tools, personalized dashboard,
                                 and scan history tracking.
                             </p>
-                            <Link to="/register" className="cyber-button-primary text-lg !px-8 !py-4 hover-lift hover-glow animate-fade-in-up delay-300 transition-all-smooth">
+                            <Link to="/register" className="cyber-button-primary text-lg !px-8 !py-4 hover-lift animate-fade-in-up delay-300">
                                 Create Free Account
                             </Link>
                         </div>
