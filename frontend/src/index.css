@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a1a3e;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2a2a5e;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(0, 245, 212, 0.3);
+  color: #fff;
+}
+
+/* Glass card utility */
+@layer components {
+  .glass-card {
+    @apply bg-cyber-card/80 backdrop-blur-xl border border-cyber-border rounded-xl;
+  }
+
+  .cyber-button {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105;
+  }
+
+  .cyber-button-primary {
+    @apply cyber-button bg-gradient-to-r from-cyber-cyan to-cyber-blue text-cyber-dark hover:shadow-cyber-glow;
+  }
+
+  .cyber-button-secondary {
+    @apply cyber-button border border-cyber-cyan text-cyber-cyan hover:bg-cyber-cyan/10 hover:shadow-cyber;
+  }
+
+  .cyber-input {
+    @apply w-full px-4 py-3 bg-cyber-darker border border-cyber-border rounded-lg text-cyber-text placeholder-cyber-muted/50 focus:outline-none focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan/50 transition-all duration-300;
+  }
+
+  .cyber-label {
+    @apply block text-sm font-medium text-cyber-muted mb-2;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-cyber-cyan via-cyber-blue to-cyber-purple bg-clip-text text-transparent;
+  }
+
+  .page-container {
+    @apply min-h-screen bg-cyber-dark pt-20;
+  }
+
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12;
+  }
+}
+
+/* Animated background grid */
+.bg-grid {
+  background-image: 
+    linear-gradient(to right, rgba(26, 26, 62, 0.3) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(26, 26, 62, 0.3) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Glow effect on hover */
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(0, 245, 212, 0.2);
+}
+
+/* Strength meter colors */
+.strength-weak { @apply bg-red-500; }
+.strength-medium { @apply bg-yellow-500; }
+.strength-strong { @apply bg-green-500; }
+.strength-very-strong { @apply bg-cyber-cyan; }
